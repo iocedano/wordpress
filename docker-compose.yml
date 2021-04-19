@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  db-church:
+    image: 'mysql:${MYSQL_VERSION}'
+    volumes:
+      - db_vol_church:/var/lib/mysql
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - wp
+    
+  wordpress:
+    depends_on:
+      - db-church
+    image: 'wordpress:${WORDPRESS_VERSION}'
+    restart: always
+    ports:
+      - "8000:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    env_file:
+      - .env
+    networks:
+      - wp
+
+  phpmyadmin:
+    depends_on: 
+      - db-church
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8001:80
+    env_file:
+      - .env
+    networks:
+      - wp
+  
+volumes:
+  db_vol_church: {}
+networks:
+  wp:

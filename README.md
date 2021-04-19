@@ -1,8 +1,8 @@
-# Docker Compose trainning
+# Docker Compose training
 
-Looking for better understanding on what docker-compone means for local developement.
+Looking for a better understanding of what docker-compone means for local development.
 
-Here, it's a basic setup using workpress (i'm noob on this tech) (BUT my goal is learn a bit more of docker)
+Here, it's a basic setup using WordPress (I'm a noob on this tech) (BUT my goal is to learn a bit more of docker)
 
 #### Tech
 - [docker](https://www.docker.com/get-started)
@@ -18,7 +18,7 @@ Create the `.env` by running this command
 ```bash
   make init
 ```
-This will have the environment variables will use to configure wordpress, mysql and phpmyadmin
+This will have the environment variables will use to configure WordPress, MySQL and PHPMyAdmin
 
 #### Run the environment
 Now, let up everything 
@@ -26,13 +26,13 @@ Now, let up everything
   make up
 ```
 
-Before startm, phpmyadmin needs to set up something on its end, when login
+Before start, PHPMyAdmin needs to set up something on its end, when login
 
 Go to the PhpMyAdmin [http://localhost:8001](http://localhost:8001)
 - `Username`: wordpress
 - `Password`: wordpress
 
-Then go to webpage [http://localhost:8000](http://localhost:8000)
+Then go to the webpage [http://localhost:8000](http://localhost:8000)
 
 
 #### Stop the environment
@@ -41,7 +41,7 @@ make down
 ```
 
 #### Burn it all
-This will remove the containers and the volumns which means delete all data
+This will remove the containers and the volumes which means delete all data
 
 ```bash
 make burn-it
@@ -49,8 +49,8 @@ make burn-it
 
 #### Files
 
-When you start you run the project; the `wp-content` is created and all the files you need to start development in wordpress. 
-(If you required all file wordpress provides; adjust the `docker-compone.yaml`; in the wordpress container change the `volumes`)
+When you start you run the project; the `wp-content` is created and all the files you need to start development in WordPress. 
+(If you required all file WordPress provides; adjust the `docker-compone.yaml`; in the WordPress container change the `volumes`)
 
 ```
 .
@@ -69,4 +69,3 @@ When you start you run the project; the `wp-content` is created and all the file
 - Docker compone [here](https://docs.docker.com/compose/)
 - Oficial wordpress docs [here](https://docs.docker.com/compose/wordpress/)
 - Set up docker-componse [here](https://pawelgrzybek.com/configure-a-local-wordpress-development-using-docker/)
-

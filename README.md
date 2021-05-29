@@ -1,8 +1,8 @@
-# Docker Compose training
+# WordPress local environment with Docker
 
 Looking for a better understanding of what docker-compone means for local development.
 
-Here, it's a basic setup using WordPress (I'm a noob on this tech) (BUT my goal is to learn a bit more of docker)
+Here, it's a basic setup using WordPress (I'm a noob on this tech) (BUT my goal is to learn a bit more about docker)
 
 #### Tech
 - [docker](https://www.docker.com/get-started)
@@ -10,47 +10,55 @@ Here, it's a basic setup using WordPress (I'm a noob on this tech) (BUT my goal 
 - [mysql:5.7](https://hub.docker.com/_/mysql)
 - [phpmyadmin](https://hub.docker.com/_/phpmyadmin)
 
+#### Docs that helps
+
+- Docker compone [here](https://docs.docker.com/compose/)
+- Oficial wordpress docs [here](https://docs.docker.com/compose/wordpress/)
+- Set up docker-componse [here](https://pawelgrzybek.com/configure-a-local-wordpress-development-using-docker/)
+
 ##### Required install
 - [docker](https://www.docker.com/get-started)
 
-#### Init
-Create the `.env` by running this command
+### Let's start
+####  Fist - run:
 ```bash
   make init
 ```
-This will have the environment variables will use to configure WordPress, MySQL and PHPMyAdmin
+The command will create the `.env` which has the environment variables will use to configure WordPress, MySQL and PHPMyAdmin
 
-#### Run the environment
-Now, let up everything 
+#### Raise all containers
 ```bash
   make up
 ```
 
-Before start, PHPMyAdmin needs to set up something on its end, when login
+Go to [http://localhost:8000/](http://localhost:8000/)
 
-Go to the PhpMyAdmin [http://localhost:8001](http://localhost:8001)
+#### PhpMyAdmin
+
+This will help you to have a closer look at the database
+
+Go to [http://localhost:8001](http://localhost:8001)
+
 - `Username`: wordpress
 - `Password`: wordpress
 
-Then go to the webpage [http://localhost:8000](http://localhost:8000)
-
-
 #### Stop the environment
 ```bash
-make down
+make stop
 ```
 
 #### Burn it all
 This will remove the containers and the volumes which means delete all data
 
 ```bash
-make burn-it
+make down
 ```
 
-#### Files
+### Files Structure
 
-When you start you run the project; the `wp-content` is created and all the files you need to start development in WordPress. 
-(If you required all file WordPress provides; adjust the `docker-compone.yaml`; in the WordPress container change the `volumes`)
+Our code folder `wp-content`!!  
+
+_Note_: `wp-content` is ignored by default! Go to `.gitignore` and remove that line to start tracking your changes!
 
 ```
 .
@@ -63,9 +71,3 @@ When you start you run the project; the `wp-content` is created and all the file
     └── Makefile
 ```
 [Tree.Tool](https://tree.nathanfriend.io/?s=(%27options!(%27fancy!true~fullPath!false~trailingSlash!true)~0(%270%27wordpress4s3wp-content3README.md4ker-compose.yaml*init.env.sh*Makefile2%27)~version!%271%27)*2%20%200source!2%5Cn3%2F*4*doc%014320*)
-
-#### Started Docs
-
-- Docker compone [here](https://docs.docker.com/compose/)
-- Oficial wordpress docs [here](https://docs.docker.com/compose/wordpress/)
-- Set up docker-componse [here](https://pawelgrzybek.com/configure-a-local-wordpress-development-using-docker/)

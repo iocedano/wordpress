@@ -1,0 +1,7 @@
+docs
+.env
+init.env.sh
+LICENSE
+Makefile
+README.md
+docker-compose.yml

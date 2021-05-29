@@ -1,11 +1,17 @@
 version: "3.9"
 
 services:
-  db-church:
+  db-app:
     image: 'mysql:${MYSQL_VERSION}'
     volumes:
-      - db_vol_church:/var/lib/mysql
+      - db_vol_app:/var/lib/mysql2
     restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
     env_file:
       - .env
     networks:
@@ -13,8 +19,9 @@ services:
     
   wordpress:
     depends_on:
-      - db-church
+      - db-app
     image: 'wordpress:${WORDPRESS_VERSION}'
+    # build: . # Building and use image from Dockerfile
     restart: always
     ports:
       - "8000:80"
@@ -29,7 +36,7 @@ services:
 
   phpmyadmin:
     depends_on: 
-      - db-church
+      - db-app
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
@@ -40,6 +47,6 @@ services:
       - wp
   
 volumes:
-  db_vol_church: {}
+  db_vol_app: {}
 networks:
   wp:

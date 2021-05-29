@@ -2,10 +2,10 @@ init:
 	sh ./init.env.sh
 
 up:
-	docker-compose up -d
+	docker compose up -d
+
+stop:
+	docker compose stop
 
 down:
-	docker-compose down
-
-burn-it:
-	docker-compose down --volumes
+	docker compose down
